@@ -2,6 +2,14 @@
 
 A production-ready, minimalist, and ultra-fast e-commerce platform built with Flask, Vanilla JavaScript, Tailwind CSS, and Supabase. Designed with a focus on modern premium aesthetics, inspired by industry leaders like Apple and linear.
 
+## 🌐 Live Demo
+
+Frontend:
+https://essence-minimalist-e-commerce.vercel.app/
+
+Backend API:
+https://essence-api-r38y.onrender.com/
+
 ![Essence Preview](https://via.placeholder.com/1200x600/000000/FFFFFF?text=Essence+E-Commerce+Platform)
 
 ## ✨ Features
