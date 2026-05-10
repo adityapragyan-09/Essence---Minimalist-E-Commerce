@@ -10,8 +10,6 @@ https://essence-minimalist-e-commerce.vercel.app/
 Backend API:
 https://essence-api-r38y.onrender.com/
 
-![Essence Preview](https://via.placeholder.com/1200x600/000000/FFFFFF?text=Essence+E-Commerce+Platform)
-
 ## ✨ Features
 
 - **Premium UI/UX:** Clean, elegant, minimalist design with dynamic micro-interactions.
