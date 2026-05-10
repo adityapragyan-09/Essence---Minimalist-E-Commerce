@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essence | Minimalist E-Commerce</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for development) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        // Tailwind will map to our CSS variables
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-[150] flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Minimalist Navbar -->
+    <nav class="fixed top-0 w-full z-[80] nav-glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 -ml-2 text-[var(--text-color)] hover:bg-[var(--border-color)] rounded-full transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold tracking-tight">Essence.</a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--muted)]">
+                    <a href="#product-grid" class="hover:text-[var(--text-color)] transition-colors">Shop</a>
+                    <a href="#category-filters" class="hover:text-[var(--text-color)] transition-colors">Collections</a>
+                    <a href="#about" class="hover:text-[var(--text-color)] transition-colors">About</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- Search Bar (Desktop) -->
+                <div class="relative hidden sm:block w-64 group">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)] group-focus-within:text-[var(--text-color)] transition-colors"></i>
+                    <input type="text" id="search-input" placeholder="Search essence..." class="input-premium">
+                </div>
+                
+                <!-- Search Button (Mobile) -->
+                <button id="mobile-search-btn" class="sm:hidden p-2 rounded-full hover:bg-[var(--border-color)] transition-colors text-[var(--text-color)]">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--border-color)] transition-colors text-[var(--text-color)]" aria-label="Toggle Dark Mode">
+                    <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
+                </button>
+
+                <!-- Cart Button -->
+                <button id="cart-btn" class="p-2 rounded-full hover:bg-[var(--border-color)] transition-colors relative text-[var(--text-color)]" aria-label="Open Cart">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-count" class="absolute top-0 right-0 bg-[var(--text-color)] text-[var(--bg-color)] text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden min-w-[18px] text-center transform translate-x-1/4 -translate-y-1/4">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="md:hidden flex flex-col items-center gap-8 text-xl font-medium">
+        <a href="#product-grid" class="mobile-link text-[var(--text-color)]">Shop</a>
+        <a href="#category-filters" class="mobile-link text-[var(--text-color)]">Collections</a>
+        <a href="#about" class="mobile-link text-[var(--text-color)]">About</a>
+    </div>
+
+    <!-- Mobile Search Overlay (Hidden by default) -->
+    <div id="mobile-search-container" class="fixed top-20 left-0 w-full bg-[var(--card-bg)] border-b border-[var(--border-color)] p-4 z-[70] hidden shadow-lg transform -translate-y-full transition-transform duration-300">
+        <div class="relative w-full">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)]"></i>
+            <input type="text" id="mobile-search-input" placeholder="Search essence..." class="input-premium">
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="pt-40 pb-20 px-6 max-w-7xl mx-auto text-center">
+        <span class="text-sm font-medium text-[var(--muted)] uppercase tracking-widest mb-4 block animate-fade-in">New Arrivals</span>
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight animate-slide-up">
+            Elevate your <br class="hidden md:block"/> everyday essentials.
+        </h1>
+        <p class="text-lg text-[var(--muted)] max-w-2xl mx-auto mb-10 animate-slide-up" style="animation-delay: 0.1s;">
+            Discover our curated collection of premium products designed for modern living. Uncompromising quality meets timeless aesthetics.
+        </p>
+        <div class="animate-slide-up flex justify-center" style="animation-delay: 0.2s;">
+            <a href="#product-grid" class="btn-primary">
+                Shop Collection <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        
+        <!-- Controls Section -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 sticky top-20 z-40 bg-[var(--bg-color)]/90 backdrop-blur-md py-4 transition-colors">
+            <!-- Categories -->
+            <div class="flex-1 overflow-x-auto hide-scrollbar">
+                <div id="category-filters" class="flex gap-3 pb-2 md:pb-0">
+                    <!-- Injected Categories -->
+                </div>
+            </div>
+
+            <!-- Sorting -->
+            <div class="flex items-center gap-4 shrink-0">
+                <div class="relative">
+                    <select id="sort-select" class="appearance-none bg-[var(--card-bg)] border border-[var(--border-color)] rounded-full text-sm font-medium text-[var(--text-color)] outline-none cursor-pointer pl-4 pr-10 py-2.5 transition-colors focus:border-[var(--text-color)] shadow-sm">
+                        <option value="newest">Newest Arrivals</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-[var(--muted)]"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6 flex justify-between items-center">
+            <h2 id="results-count" class="text-sm font-medium text-[var(--muted)]">Loading collection...</h2>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+            <!-- Products Injected Here -->
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden flex flex-col items-center justify-center py-32 text-center">
+            <i data-lucide="wifi-off" class="w-12 h-12 text-[var(--muted)] mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Connection Lost</h3>
+            <p class="text-[var(--muted)] max-w-sm mb-8">We couldn't load the collection. Please check your connection and try again.</p>
+            <button onclick="fetchProducts()" class="btn-secondary">Try Again</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="about" class="border-t border-[var(--border-color)] bg-[var(--card-bg)] transition-colors">
+        <div class="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <a href="#" class="text-3xl font-bold tracking-tight mb-2 block">Essence.</a>
+                <p class="text-sm text-[var(--muted)] max-w-xs">Curated essentials for the modern lifestyle. Quality without compromise.</p>
+            </div>
+            <div class="flex gap-8 text-sm font-medium text-[var(--muted)]">
+                <a href="#" class="hover:text-[var(--text-color)] transition-colors">Instagram</a>
+                <a href="#" class="hover:text-[var(--text-color)] transition-colors">Twitter</a>
+                <a href="#" class="hover:text-[var(--text-color)] transition-colors">Support</a>
+            </div>
+            <div class="text-sm text-[var(--muted)]">&copy; 2026 Essence. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay"></div>
+    <div id="cart-sidebar" class="flex flex-col">
+        <div class="p-6 md:p-8 flex items-center justify-between border-b border-[var(--border-color)]">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i> Your Cart
+            </h2>
+            <button id="close-cart" class="p-2 rounded-full hover:bg-[var(--border-color)] transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6 md:p-8 space-y-6">
+            <!-- Cart items -->
+        </div>
+
+        <div class="p-6 md:p-8 border-t border-[var(--border-color)] bg-[var(--card-bg)]">
+            <div class="flex items-center justify-between mb-6">
+                <span class="font-medium text-[var(--muted)]">Subtotal</span>
+                <span id="cart-total" class="text-2xl font-bold">₹0.00</span>
+            </div>
+            <p class="text-xs text-[var(--muted)] mb-6">Shipping and taxes calculated at checkout.</p>
+            <button class="w-full btn-primary py-4 text-lg">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick-View Modal -->
+    <div id="product-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-md" id="close-modal-bg"></div>
+        <div class="relative w-full max-w-5xl bg-[var(--card-bg)] rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl transform transition-all scale-95 opacity-0 duration-400 ease-out" id="modal-content">
+            <button id="close-modal" class="absolute top-6 right-6 z-[210] p-2 bg-[var(--card-bg)]/80 backdrop-blur-md border border-[var(--border-color)] rounded-full hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="w-full md:w-1/2 aspect-square md:aspect-auto md:h-auto bg-[var(--bg-color)] flex items-center justify-center p-12 relative group">
+                <img id="modal-image" src="" alt="Product Image" class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transition-transform duration-700 group-hover:scale-105">
+            </div>
+            
+            <div class="w-full md:w-1/2 p-8 md:p-14 flex flex-col justify-center">
+                <div class="flex items-center gap-2 mb-4">
+                    <span id="modal-category" class="text-xs font-bold uppercase tracking-wider text-[var(--muted)]"></span>
+                    <span class="w-1 h-1 rounded-full bg-[var(--border-color)]"></span>
+                    <div class="flex items-center gap-1 text-[var(--accent)]" id="modal-rating">
+                        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        <span class="text-xs font-medium text-[var(--text-color)]">4.8 (120 reviews)</span>
+                    </div>
+                </div>
+                
+                <h2 id="modal-title" class="text-3xl md:text-4xl font-bold tracking-tight mb-4 leading-tight"></h2>
+                <div id="modal-price" class="text-2xl font-medium mb-6"></div>
+                
+                <div class="w-12 h-1 bg-[var(--text-color)] rounded-full mb-6 opacity-20"></div>
+                
+                <p id="modal-description" class="text-[var(--muted)] leading-relaxed mb-10 text-sm md:text-base"></p>
+                
+                <div class="flex gap-4 mt-auto">
+                    <button id="modal-add-btn" class="flex-1 btn-primary py-4">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> Add to Cart
+                    </button>
+                    <button id="modal-wishlist-btn" class="p-4 border border-[var(--border-color)] rounded-full hover:bg-[var(--border-color)] transition-colors group relative">
+                        <i data-lucide="heart" class="w-5 h-5 group-hover:text-red-500 transition-colors" id="modal-wishlist-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Logic -->
+    <script src="index.js"></script>
+</body>
+</html>
